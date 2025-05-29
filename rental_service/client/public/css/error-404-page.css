@@ -1,0 +1,19 @@
+.not-found-page {
+  padding: 60px 0;
+  text-align: center;
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+
+  &__link {
+    color: #4481c3;
+    text-decoration: underline;
+  }
+}
