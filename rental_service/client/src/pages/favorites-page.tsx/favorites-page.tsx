@@ -1,4 +1,5 @@
-import { CitiesCard } from "../../components/cities-card/cities-card";
+
+import { FavoritesCard } from "../../components/favorites-card/favorites-card";
 
 function FavoritesPage () {
     return (
@@ -15,9 +16,9 @@ function FavoritesPage () {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <CitiesCard/>
-                  <CitiesCard/>
-                  <CitiesCard/>
+                  <FavoritesCard/>
+                  <FavoritesCard/>
+                  <FavoritesCard/>
                 </div>
               </li>
 

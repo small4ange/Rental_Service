@@ -1,48 +1,21 @@
 import { CitiesCard } from "../../components/cities-card/cities-card";
-import { ReviewsForm } from "../../components/reviews-form/reviews-form";
+import { OfferFeatures } from "../../components/offer-components/offer-features/offer-features";
+import { OfferGallery } from "../../components/offer-components/offer-gallery/offer-gallery";
+import { OfferHeader } from "../../components/offer-components/offer-header/offer-header";
+import { OfferInside } from "../../components/offer-components/offer-inside/offer-inside";
+import { OfferPrice } from "../../components/offer-components/offer-price/offer-price";
+import { OfferReviews } from "../../components/offer-components/offer-reviews/offer-reviews";
 
 function OfferPage() {
   return (
     <>
       <section className="offer">
         <div className="offer__gallery-container container">
-          <div className="offer__gallery">
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/room.jpg" alt="Photo studio" />
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio" />
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-02.jpg" alt="Photo studio" />
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-03.jpg" alt="Photo studio" />
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/studio-01.jpg" alt="Photo studio" />
-            </div>
-            <div className="offer__image-wrapper">
-              <img className="offer__image" src="img/apartment-01.jpg" alt="Photo studio" />
-            </div>
-          </div>
+          <OfferGallery/>
         </div>
         <div className="offer__container container">
           <div className="offer__wrapper">
-            <div className="offer__mark">
-              <span>Premium</span>
-            </div>
-            <div className="offer__name-wrapper">
-              <h1 className="offer__name">
-                Beautiful &amp; luxurious studio at great location
-              </h1>
-              <button className="offer__bookmark-button button" type="button">
-                <svg className="offer__bookmark-icon" width="31" height="33">
-                  <use href="#icon-bookmark"></use>
-                </svg>
-                <span className="visually-hidden">To bookmarks</span>
-              </button>
-            </div>
+            <OfferHeader/>
             <div className="offer__rating rating">
               <div className="offer__stars rating__stars">
                 <span style={{ width: "80%" }}></span>
@@ -50,30 +23,9 @@ function OfferPage() {
               </div>
               <span className="offer__rating-value rating__value">4.8</span>
             </div>
-            <ul className="offer__features">
-              <li className="offer__feature offer__feature--entire">Apartment</li>
-              <li className="offer__feature offer__feature--bedrooms">3 Bedrooms</li>
-              <li className="offer__feature offer__feature--adults">Max 4 adults</li>
-            </ul>
-            <div className="offer__price">
-              <b className="offer__price-value">&euro;120</b>
-              <span className="offer__price-text">&nbsp;night</span>
-            </div>
-            <div className="offer__inside">
-              <h2 className="offer__inside-title">What&apos;s inside</h2>
-              <ul className="offer__inside-list">
-                <li className="offer__inside-item">Wi-Fi</li>
-                <li className="offer__inside-item">Washing machine</li>
-                <li className="offer__inside-item">Towels</li>
-                <li className="offer__inside-item">Heating</li>
-                <li className="offer__inside-item">Coffee machine</li>
-                <li className="offer__inside-item">Baby seat</li>
-                <li className="offer__inside-item">Kitchen</li>
-                <li className="offer__inside-item">Dishwasher</li>
-                <li className="offer__inside-item">Cabel TV</li>
-                <li className="offer__inside-item">Fridge</li>
-              </ul>
-            </div>
+            <OfferFeatures/>
+            <OfferPrice/>
+            <OfferInside/>
             <div className="offer__host">
               <h2 className="offer__host-title">Meet the host</h2>
               <div className="offer__host-user user">
@@ -93,49 +45,7 @@ function OfferPage() {
               </div>
             </div>
           </div>
-
-          <section className="offer__reviews reviews">
-            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-            <ul className="reviews__list">
-              <li className="reviews__item">
-                <div className="reviews__user user">
-                  <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                    <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
-                  </div>
-                  <span className="reviews__user-name">Max</span>
-                </div>
-                <div className="reviews__info">
-                  <div className="reviews__rating rating">
-                    <div className="reviews__stars rating__stars">
-                      <span style={{ width: "80%" }}></span>
-                      <span className="visually-hidden">Rating</span>
-                    </div>
-                  </div>
-                  <p className="reviews__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                </div>
-              </li>
-            </ul>
-
-            <form className="reviews__form form" action="#" method="post">
-              <label className="reviews__label form__label" htmlFor="review">Your review</label>
-              <div className="reviews__rating-form form__rating">
-                <ReviewsForm />
-                <ReviewsForm />
-                <ReviewsForm />
-                <ReviewsForm />
-              </div>
-              <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved"></textarea>
-              <div className="reviews__button-wrapper">
-                <p className="reviews__help">
-                  To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-                </p>
-                <button className="reviews__submit form__submit button" type="submit" disabled={true}>Submit</button>
-              </div>
-            </form>
-          </section>
+          <OfferReviews/>
         </div>
         <section className="offer__map map"></section>
       </section>
