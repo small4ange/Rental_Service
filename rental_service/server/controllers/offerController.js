@@ -71,25 +71,13 @@ export async function createOffer(req, res, next) {
 
 export async function getFullOffer(req, res, next){
   try {
-    // получаем id из параметров url
-    let id = req.params.id;
-    if (id.startsWith(':')) {
-      id = id.slice(1);
-    }
-    console.log("id", id);
-
-    if (isNaN(id)) {
-      return next(ApiError.badRequest('Неверный формат ID'));
-    }
-    const offerId = parseInt(id, 10);
-
+    const offerId = req.parsedId;
     const offer = await Offer.findByPk(offerId, {
       include: {
         model: User,
         as: 'author',
       }
     });
-    console.log(offer);
     if (!offer) {
       return next(ApiError.badRequest('Оффер не найден'));
     }
@@ -97,9 +85,52 @@ export async function getFullOffer(req, res, next){
     return res.status(200).json(adaptedOffer);
 
   } catch (error) {
-    console.log(error);
     next(ApiError.internal(error.message));
   }
 };
+
+export async function getFavoriteOffers(req, res, next) {
+  try {
+    const favoriteOffers = await Offer.findAll({
+        where: {
+          isFavorite: true
+        },
+        include: [{
+          model: User,
+          as: 'author',
+        }]
+      });
+      const adaptedOffers = favoriteOffers.map((offer) => ({
+            ...adaptOfferToClient(offer),
+            author: {
+              id: offer.author.id,
+              username: offer.author.username,
+              avatar: offer.author.avatar,
+              isPro: offer.author.userType === 'pro'
+            }
+          }));
+
+      res.json(adaptedOffers);
+  } catch (error) {
+    next(ApiError.internal(error.message));
+  }
+}
+
+export const toggleFavorite = async (req, res, next) => {
+  try {
+    const { offerId, status } = req.params;
+    const offer = await Offer.findByPk(offerId);
+    if(!offer){
+      return next(ApiError.notFound('Предложение не найдено'));
+    }
+
+    offer.isFavorite = status === "1";
+    await offer.save();
+    
+    res.json(offer);
+  } catch (error) {
+    next(ApiError.internal('Ошибка при обновлении статуса избранного'))
+  }
+}
 
 export {getAllOffers};
