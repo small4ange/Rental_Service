@@ -24,4 +24,17 @@ const OfferInsideItems = [
     "Fridge",
 ];
 
-export {Setting, OfferGalleryImg, OfferInsideItems};
+const AppRoute = {
+    Main: '/',
+    Login: '/login',
+    Favorites: '/favorites',
+    Offer: '/offer/:id',
+} as const;
+
+const AuthorizationStatus = {
+    Auth: 'AUTH',
+    NoAuth: 'NO_AUTH',
+    Unknown: 'UNKNOWN',
+}
+
+export {Setting, OfferGalleryImg, OfferInsideItems, AppRoute, AuthorizationStatus};
